@@ -33,6 +33,13 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Test the project - $(buildConfiguration)'
+  inputs:
+    command: 'test'
+    arguments: --configuration $(BuildConfiguration) --collect "Code Coverage"
+    projects: '**/*Test.csproj'
+
+- task: DotNetCoreCLI@2
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'publish'
